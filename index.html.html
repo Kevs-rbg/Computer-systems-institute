@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Computer Systems Institute - Learn, innovate, and build your future in technology.">
+  <title>Computer Systems Institute | Learn. Innovate. Succeed.</title>
+  <style>
+    :root {
+      --navy: #092b55;
+      --blue: #1264c7;
+      --sky: #eaf3ff;
+      --ink: #172b45;
+      --muted: #60738b;
+      --white: #ffffff;
+      --line: #dce7f4;
+      --shadow: 0 18px 50px rgba(9, 43, 85, .12);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: #f8fbff;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1120px, 90%); margin: auto; }
+    header {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(255,255,255,.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; color: var(--navy); }
+    .logo {
+      width: 43px; height: 43px; border-radius: 12px; display: grid; place-items: center;
+      color: white; font-weight: 900; letter-spacing: -1px;
+      background: linear-gradient(135deg, #1477e8, #07376f);
+      box-shadow: 0 7px 18px rgba(18,100,199,.25);
+    }
+    .brand small { display: block; color: var(--muted); font-size: 10px; letter-spacing: 1.5px; }
+    nav { display: flex; align-items: center; gap: 27px; font-size: 14px; font-weight: 700; }
+    nav a:hover { color: var(--blue); }
+    .menu-btn { display: none; border: 0; background: var(--sky); color: var(--navy); padding: 9px 12px; border-radius: 9px; font-size: 20px; }
+    .btn {
+      display: inline-flex; justify-content: center; align-items: center; gap: 8px;
+      background: var(--blue); color: white; padding: 13px 21px; border-radius: 9px;
+      font-weight: 700; border: 0; cursor: pointer; transition: .2s;
+    }
+    .btn:hover { background: #084f9f; transform: translateY(-2px); }
+    .btn-outline { background: transparent; color: var(--navy); border: 1px solid #b9cce3; }
+    .btn-outline:hover { color: white; border-color: var(--blue); }
+    .hero {
+      position: relative; overflow: hidden; color: white;
+      background: radial-gradient(circle at 82% 22%, rgba(74,157,255,.35), transparent 28%),
+                  linear-gradient(120deg, #06264d 0%, #0c4c91 58%, #1374d7 100%);
+      padding: 94px 0 100px;
+    }
+    .hero:after {
+      content: ""; position: absolute; width: 430px; height: 430px; right: -120px; bottom: -250px;
+      border: 1px solid rgba(255,255,255,.18); border-radius: 50%;
+      box-shadow: 0 0 0 45px rgba(255,255,255,.035), 0 0 0 95px rgba(255,255,255,.025);
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.12fr .88fr; align-items: center; gap: 55px; position: relative; z-index: 1; }
+    .eyebrow { color: #a9d2ff; font-size: 12px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 18px; }
+    h1 { font-size: clamp(39px, 5.5vw, 65px); line-height: 1.08; letter-spacing: -2px; margin-bottom: 22px; }
+    .hero p { color: #d7e9ff; max-width: 570px; font-size: 17px; margin-bottom: 30px; }
+    .hero-actions { display: flex; gap: 13px; flex-wrap: wrap; }
+    .hero .btn { background: white; color: var(--navy); }
+    .hero .btn:hover { background: #e7f2ff; }
+    .hero .btn-outline { color: white; border-color: rgba(255,255,255,.45); background: transparent; }
+    .hero-card {
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.22);
+      border-radius: 22px; padding: 27px; backdrop-filter: blur(8px);
+      box-shadow: 0 24px 60px rgba(0,0,0,.15);
+    }
+    .screen { background: #f5f9ff; border-radius: 14px; padding: 17px; color: var(--navy); }
+    .screen-top { display: flex; gap: 5px; margin-bottom: 18px; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: #9db8d8; }
+    .screen-banner { background: linear-gradient(110deg, #0a3e7a, #1681e8); color: white; border-radius: 10px; padding: 22px 17px; }
+    .screen-banner strong { font-size: 20px; display: block; }
+    .screen-banner span { font-size: 11px; opacity: .8; }
+    .screen-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 9px; margin-top: 12px; }
+    .screen-tile { background: white; border: 1px solid #e1eaf5; border-radius: 9px; padding: 13px 8px; text-align: center; }
+    .screen-tile b { display: block; font-size: 18px; color: var(--blue); }
+    .screen-tile small { font-size: 9px; color: var(--muted); }
+    section { padding: 82px 0; }
+    .section-head { text-align: center; max-width: 670px; margin: 0 auto 43px; }
+    .section-head .eyebrow { color: var(--blue); margin-bottom: 9px; }
+    h2 { color: var(--navy); font-size: clamp(29px, 3.5vw, 40px); line-height: 1.2; margin-bottom: 13px; letter-spacing: -.8px; }
+    .section-head p, .muted { color: var(--muted); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 45px; align-items: center; }
+    .about-panel { background: var(--sky); border-radius: 20px; padding: 35px; border: 1px solid #d7e8fb; }
+    .about-icon { width: 55px; height: 55px; display: grid; place-items: center; border-radius: 15px; background: white; color: var(--blue); font-size: 25px; margin-bottom: 18px; }
+    .about-panel h3 { color: var(--navy); font-size: 23px; margin-bottom: 10px; }
+    .check-list { list-style: none; display: grid; gap: 13px; margin-top: 22px; }
+    .check-list li:before { content: "✓"; color: var(--blue); font-weight: 900; margin-right: 10px; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .card { background: white; border: 1px solid var(--line); border-radius: 16px; padding: 25px; box-shadow: 0 8px 25px rgba(9,43,85,.045); transition: .2s; }
+    .card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .card-icon { width: 48px; height: 48px; border-radius: 13px; display: grid; place-items: center; background: var(--sky); color: var(--blue); font-size: 23px; margin-bottom: 18px; }
+    .card h3 { color: var(--navy); margin-bottom: 9px; font-size: 19px; }
+    .card p { color: var(--muted); font-size: 14px; }
+    .highlight { background: #edf5ff; }
+    .highlight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 45px; align-items: center; }
+    .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .stat { background: white; border: 1px solid var(--line); border-radius: 14px; padding: 22px; }
+    .stat strong { color: var(--blue); font-size: 29px; display: block; }
+    .stat span { color: var(--muted); font-size: 13px; }
+    .contact-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 35px; }
+    .contact-info { background: var(--navy); color: white; border-radius: 18px; padding: 30px; }
+    .contact-info h3 { font-size: 23px; margin-bottom: 13px; }
+    .contact-info p { color: #c8ddf6; margin: 12px 0; font-size: 14px; }
+    form { background: white; border: 1px solid var(--line); border-radius: 18px; padding: 28px; box-shadow: 0 8px 25px rgba(9,43,85,.05); }
+    label { display: block; color: var(--navy); font-weight: 700; font-size: 13px; margin: 0 0 6px; }
+    input, textarea, select { width: 100%; padding: 12px 13px; border: 1px solid #ccd9e8; border-radius: 8px; margin-bottom: 15px; font: inherit; color: var(--ink); background: white; }
+    input:focus, textarea:focus, select:focus { outline: 2px solid #b9d8ff; border-color: var(--blue); }
+    textarea { min-height: 105px; resize: vertical; }
+    .form-note { color: var(--muted); font-size: 12px; margin-top: 10px; }
+    footer { background: #061f3e; color: #d1e1f3; padding: 28px 0; font-size: 13px; }
+    .footer-row { display: flex; justify-content: space-between; align-items: center; gap: 15px; flex-wrap: wrap; }
+    .footer-row strong { color: white; }
+    @media (max-width: 800px) {
+      .hero-grid, .about-grid, .highlight-grid, .contact-grid { grid-template-columns: 1fr; }
+      .hero { padding: 70px 0; }
+      .hero-card { max-width: 520px; }
+      .cards { grid-template-columns: 1fr 1fr; }
+      nav { display: none; position: absolute; top: 76px; left: 0; right: 0; background: white; padding: 20px 5%; border-bottom: 1px solid var(--line); flex-direction: column; align-items: flex-start; }
+      nav.open { display: flex; }
+      .menu-btn { display: block; }
+      .nav-cta { display: none; }
+    }
+    @media (max-width: 540px) {
+      section { padding: 62px 0; }
+      .cards { grid-template-columns: 1fr; }
+      .hero-grid { gap: 35px; }
+      .hero-card { padding: 15px; }
+      .about-panel, form, .contact-info { padding: 22px; }
+      .stat-grid { gap: 9px; }
+      .stat { padding: 15px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="Computer Systems Institute home">
+        <span class="logo">CSI</span>
+        <span>COMPUTER SYSTEMS INSTITUTE<small>LEARN · INNOVATE · SUCCEED</small></span>
+      </a>
+      <nav id="navigation">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#programs">Programs</a>
+        <a href="#admissions">Admissions</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="btn nav-cta" href="#contact">Get in touch</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Open navigation menu" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Your future starts with technology</div>
+          <h1>Build skills.<br>Shape the future.</h1>
+          <p>Welcome to Computer Systems Institute. Explore technology, develop practical skills, and prepare for opportunities in a connected world.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#programs">Explore programs <span>→</span></a>
+            <a class="btn btn-outline" href="#about">Discover CSI</a>
+          </div>
+        </div>
+        <div class="hero-card" aria-label="Illustration of a school technology dashboard">
+          <div class="screen">
+            <div class="screen-top"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+            <div class="screen-banner">
+              <span>COMPUTER SYSTEMS INSTITUTE</span>
+              <strong>Learn something<br>extraordinary.</strong>
+            </div>
+            <div class="screen-row">
+              <div class="screen-tile"><b>01</b><small>LEARN</small></div>
+              <div class="screen-tile"><b>02</b><small>CREATE</small></div>
+              <div class="screen-tile"><b>03</b><small>GROW</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container about-grid">
+        <div>
+          <div class="eyebrow">About our institute</div>
+          <h2>Education for a digital world.</h2>
+          <p class="muted">Computer Systems Institute is focused on helping learners build knowledge, confidence, and practical skills for a technology-driven future.</p>
+          <ul class="check-list">
+            <li>Learning centered on technology and innovation</li>
+            <li>Practical skills for real-world challenges</li>
+            <li>A welcoming environment for curious learners</li>
+          </ul>
+        </div>
+        <div class="about-panel">
+          <div class="about-icon">✦</div>
+          <h3>Our mission</h3>
+          <p class="muted">To encourage lifelong learning and empower students with the digital knowledge and problem-solving skills needed to make a positive impact.</p>
+          <br>
+          <h3>Our vision</h3>
+          <p class="muted">To be a learning community where technology, creativity, and opportunity come together.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="programs" class="highlight">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Explore learning</div>
+          <h2>Programs and areas of interest</h2>
+          <p>Discover technology fields and start building the skills that can help you reach your goals.</p>
+        </div>
+        <div class="cards">
+          <article class="card"><div class="card-icon">⌘</div><h3>Computer Systems</h3><p>Understand computer hardware, operating systems, and the technology behind everyday computing.</p></article>
+          <article class="card"><div class="card-icon">⌨</div><h3>Programming</h3><p>Explore coding concepts, logical thinking, and the process of creating useful software.</p></article>
+          <article class="card"><div class="card-icon">◎</div><h3>Web Development</h3><p>Learn how websites are planned, designed, built, and made accessible on different devices.</p></article>
+          <article class="card"><div class="card-icon">▦</div><h3>Networking</h3><p>Discover how computers connect, communicate, and share information securely.</p></article>
+          <article class="card"><div class="card-icon">◇</div><h3>Digital Design</h3><p>Combine creativity and technology to communicate ideas through digital experiences.</p></article>
+          <article class="card"><div class="card-icon">⌁</div><h3>IT Fundamentals</h3><p>Build a strong foundation in digital tools, troubleshooting, and information technology.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="admissions">
+      <div class="container highlight-grid">
+        <div>
+          <div class="eyebrow">Take the next step</div>
+          <h2>Ready to begin your learning journey?</h2>
+          <p class="muted">Contact the institute to ask about admissions, available programs, requirements, and schedules. Our team can help guide you through the next steps.</p>
+          <br>
+          <a class="btn" href="#contact">Ask about admissions →</a>
+        </div>
+        <div class="stat-grid">
+          <div class="stat"><strong>Learn</strong><span>Build your knowledge</span></div>
+          <div class="stat"><strong>Create</strong><span>Turn ideas into projects</span></div>
+          <div class="stat"><strong>Connect</strong><span>Discover a world of technology</span></div>
+          <div class="stat"><strong>Grow</strong><span>Prepare for what's next</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">We would love to hear from you</div>
+          <h2>Contact Computer Systems Institute</h2>
+          <p>Have a question? Send us a message using the form.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h3>Get in touch</h3>
+            <p>✉ Email: Add your official school email</p>
+            <p>☎ Phone: Add your school contact number</p>
+            <p>⌖ Address: Add your school address</p>
+            <p style="margin-top:25px;font-size:12px;">Please update these contact details before publishing your website.</p>
+          </div>
+          <form id="contactForm">
+            <label for="name">Full name</label>
+            <input id="name" name="name" type="text" placeholder="Enter your full name" required>
+            <label for="email">Email address</label>
+            <input id="email" name="email" type="email" placeholder="name@example.com" required>
+            <label for="subject">Subject</label>
+            <select id="subject" name="subject">
+              <option>General inquiry</option>
+              <option>Admissions</option>
+              <option>Programs and courses</option>
+              <option>Other</option>
+            </select>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="How can we help you?" required></textarea>
+            <button class="btn" type="submit">Prepare message →</button>
+            <p class="form-note" id="formNote">Demo form: it opens your email app. Connect a backend to receive and store messages online.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-row">
+      <strong>COMPUTER SYSTEMS INSTITUTE</strong>
+      <span>© <span id="year"></span> Computer Systems Institute. All rights reserved.</span>
+      <a href="#home">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile navigation
+    const menuBtn = document.getElementById('menuBtn');
+    const navigation = document.getElementById('navigation');
+    menuBtn.addEventListener('click', () => {
+      const isOpen = navigation.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+      menuBtn.textContent = isOpen ? '✕' : '☰';
+    });
+    navigation.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navigation.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.textContent = '☰';
+      });
+    });
+
+    // Current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Demo contact form: prepares an email; it does not store or send data by itself.
+    document.getElementById('contactForm').addEventListener('submit', event => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const subject = form.subject.value;
+      const message = form.message.value.trim();
+      const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
+      const mailto = `mailto:?subject=${encodeURIComponent('CSI Website: ' + subject)}&body=${encodeURIComponent(body)}`;
+      document.getElementById('formNote').textContent = 'Your email app should open with your message. Add the school email address in the mailto link in the source code to direct it to the school.';
+      window.location.href = mailto;
+    });
+  </script>
+</body>
+</html>
